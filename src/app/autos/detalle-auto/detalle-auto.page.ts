@@ -15,7 +15,7 @@ const MESES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'O
 export class DetalleAutoPage {
   vehiculo: Vehiculo | undefined;
   servicios: Servicio[] = [];
-  imagenPredeterminada = 'assets/img/auto-default.svg';
+  imagenPredeterminada = 'assets/img/auto-default.jpg';
 
   cantidadServicios = 0;
   cantidadPendientes = 0;

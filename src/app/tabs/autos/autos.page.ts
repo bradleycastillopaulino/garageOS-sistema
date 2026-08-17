@@ -11,7 +11,7 @@ import { Vehiculo } from '../../models/vehiculo.model';
 })
 export class AutosPage {
   vehiculos: Vehiculo[] = [];
-  imagenPredeterminada = 'assets/img/auto-default.svg';
+  imagenPredeterminada = 'assets/img/auto-default.jpg';
 
   constructor(private garageData: GarageDataService, private router: Router) {}
 

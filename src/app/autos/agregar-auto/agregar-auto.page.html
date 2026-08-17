@@ -9,7 +9,7 @@
 
 <ion-content class="contenido-form">
   <div class="zona-foto" (click)="tomarFoto()">
-    <img [src]="foto || 'assets/img/auto-default.svg'" alt="Foto del vehículo" />
+    <img [src]="foto || 'assets/img/auto-default.jpg'" alt="Foto del vehículo" />
     <div class="etiqueta-foto">
       <ion-icon name="camera-outline"></ion-icon>
       <span>{{ foto ? 'Cambiar fotografía' : 'Tomar fotografía' }}</span>
