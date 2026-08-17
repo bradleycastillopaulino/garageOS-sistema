@@ -1,0 +1,24 @@
+.contenido-autos {
+  --background: #f4f6fa;
+}
+
+.lista-autos {
+  margin: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+ion-thumbnail {
+  --border-radius: 8px;
+  --size: 56px;
+}
+
+ion-thumbnail img {
+  object-fit: cover;
+}
+
+.texto-vacio {
+  margin: 24px 16px;
+  color: #94a3b8;
+  text-align: center;
+}

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>GarageOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido-dashboard">
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <span class="tarjeta-numero">{{ totalAutos }}</span>
+      <span class="tarjeta-texto">Autos registrados</span>
+    </div>
+    <div class="tarjeta">
+      <span class="tarjeta-numero">{{ pendientes }}</span>
+      <span class="tarjeta-texto">Servicios pendientes</span>
+    </div>
+    <div class="tarjeta">
+      <span class="tarjeta-numero">{{ completados }}</span>
+      <span class="tarjeta-texto">Servicios completados</span>
+    </div>
+  </div>
+
+  <h2 class="titulo-seccion">Últimos servicios</h2>
+
+  <ion-list *ngIf="ultimosServicios.length; else sinServicios" lines="full" class="lista-servicios">
+    <ion-item *ngFor="let servicio of ultimosServicios">
+      <ion-label>
+        <h3>{{ servicio.vehiculo ? (servicio.vehiculo.marca + ' ' + servicio.vehiculo.modelo + ' ' + servicio.vehiculo.anio) : 'Vehículo no encontrado' }}</h3>
+        <p>{{ servicio.problema }}</p>
+      </ion-label>
+      <ion-badge slot="end" [color]="servicio.estado === 'Completado' ? 'success' : servicio.estado === 'En proceso' ? 'warning' : 'medium'">
+        {{ servicio.estado }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #sinServicios>
+    <p class="texto-vacio">Todavía no hay servicios registrados.</p>
+  </ng-template>
+</ion-content>

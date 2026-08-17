@@ -1,0 +1,42 @@
+.contenido-form {
+  --background: #f4f6fa;
+  --padding-bottom: 24px;
+}
+
+.zona-foto {
+  position: relative;
+  margin: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.zona-foto img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.etiqueta-foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.lista-form {
+  margin: 0 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.boton-guardar {
+  margin: 24px 16px 8px;
+  --background: #1d4ed8;
+}

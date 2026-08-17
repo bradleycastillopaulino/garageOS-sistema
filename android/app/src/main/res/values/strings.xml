@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GarageOS</string>
+    <string name="title_activity_main">GarageOS</string>
+    <string name="package_name">com.garageos.app</string>
+    <string name="custom_url_scheme">com.garageos.app</string>
+</resources>

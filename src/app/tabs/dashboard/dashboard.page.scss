@@ -1,0 +1,52 @@
+.contenido-dashboard {
+  --background: #f4f6fa;
+}
+
+.tarjetas {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+}
+
+.tarjeta {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tarjeta-numero {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.tarjeta-texto {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.titulo-seccion {
+  margin: 8px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.lista-servicios {
+  margin: 0 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.texto-vacio {
+  margin: 16px;
+  color: #94a3b8;
+  text-align: center;
+}

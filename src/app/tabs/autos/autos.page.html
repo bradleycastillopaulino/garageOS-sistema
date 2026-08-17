@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Autos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido-autos">
+  <div *ngIf="!vehiculos.length" class="texto-vacio">
+    Todavía no hay autos registrados.
+  </div>
+
+  <ion-list *ngIf="vehiculos.length" lines="full" class="lista-autos">
+    <ion-item *ngFor="let vehiculo of vehiculos" button (click)="verDetalle(vehiculo)">
+      <ion-thumbnail slot="start">
+        <img [src]="vehiculo.foto || imagenPredeterminada" alt="Foto del vehículo" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.anio }}</h3>
+        <p>{{ vehiculo.matricula }} · {{ vehiculo.color }}</p>
+        <p>{{ vehiculo.propietario }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="irAgregarAuto()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/autos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar auto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido-form">
+  <div class="zona-foto" (click)="tomarFoto()">
+    <img [src]="foto || 'assets/img/auto-default.svg'" alt="Foto del vehículo" />
+    <div class="etiqueta-foto">
+      <ion-icon name="camera-outline"></ion-icon>
+      <span>{{ foto ? 'Cambiar fotografía' : 'Tomar fotografía' }}</span>
+    </div>
+  </div>
+
+  <ion-list class="lista-form" lines="full">
+    <ion-item>
+      <ion-input label="Marca" labelPlacement="stacked" placeholder="Toyota" [(ngModel)]="marca"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Modelo" labelPlacement="stacked" placeholder="Corolla" [(ngModel)]="modelo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Año" labelPlacement="stacked" type="number" placeholder="2018" [(ngModel)]="anio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Matrícula" labelPlacement="stacked" placeholder="ABC-1234" [(ngModel)]="matricula"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Color" labelPlacement="stacked" placeholder="Gris" [(ngModel)]="color"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Propietario" labelPlacement="stacked" placeholder="Nombre del propietario" [(ngModel)]="propietario"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" class="boton-guardar" [disabled]="!formularioValido()" (click)="guardarVehiculo()">
+    Guardar vehículo
+  </ion-button>
+</ion-content>

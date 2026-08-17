@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/autos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del auto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido-detalle" *ngIf="vehiculo">
+  <div class="zona-foto">
+    <img [src]="vehiculo.foto || imagenPredeterminada" alt="Foto del vehículo" />
+  </div>
+
+  <div class="info-vehiculo">
+    <h1>{{ vehiculo.marca }} {{ vehiculo.modelo }}</h1>
+    <p class="anio">{{ vehiculo.anio }}</p>
+  </div>
+
+  <ion-list class="lista-info" lines="full">
+    <ion-item>
+      <ion-label>
+        <p>Matrícula</p>
+        <h3>{{ vehiculo.matricula }}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Color</p>
+        <h3>{{ vehiculo.color }}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <p>Propietario</p>
+        <h3>{{ vehiculo.propietario }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <span class="tarjeta-numero">{{ cantidadServicios }}</span>
+      <span class="tarjeta-texto">Servicios</span>
+    </div>
+    <div class="tarjeta">
+      <span class="tarjeta-numero">{{ cantidadPendientes }}</span>
+      <span class="tarjeta-texto">Pendientes</span>
+    </div>
+    <div class="tarjeta">
+      <span class="tarjeta-numero tarjeta-numero-monto">{{ formatearMonto(totalGastado) }}</span>
+      <span class="tarjeta-texto">Total gastado</span>
+    </div>
+  </div>
+
+  <ion-button expand="block" class="boton-crear-servicio" (click)="irCrearServicio()">
+    + Crear servicio
+  </ion-button>
+
+  <h2 class="titulo-seccion">Historial de servicios</h2>
+
+  <ion-list *ngIf="servicios.length; else sinServicios" lines="full" class="lista-historial">
+    <ion-item *ngFor="let servicio of servicios">
+      <ion-label>
+        <h3>{{ servicio.problema }}</h3>
+        <p>{{ formatearFecha(servicio.fecha) }} · {{ formatearMonto(servicio.costo) }}</p>
+      </ion-label>
+      <ion-badge slot="end" [color]="servicio.estado === 'Completado' ? 'success' : servicio.estado === 'En proceso' ? 'warning' : 'medium'">
+        {{ servicio.estado }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #sinServicios>
+    <p class="texto-vacio">Todavía no hay servicios registrados para este vehículo.</p>
+  </ng-template>
+</ion-content>

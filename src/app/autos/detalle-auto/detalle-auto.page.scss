@@ -1,0 +1,99 @@
+.contenido-detalle {
+  --background: #f4f6fa;
+}
+
+.zona-foto {
+  margin: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.zona-foto img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.info-vehiculo {
+  margin: 0 16px 8px;
+}
+
+.info-vehiculo h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.info-vehiculo .anio {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.lista-info {
+  margin: 0 16px 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tarjetas {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 16px;
+}
+
+.tarjeta {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tarjeta-numero {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.tarjeta-numero-monto {
+  font-size: 16px;
+}
+
+.tarjeta-texto {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.boton-crear-servicio {
+  margin: 0 16px 24px;
+  --background: #1d4ed8;
+}
+
+.titulo-seccion {
+  margin: 8px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.lista-historial {
+  margin: 0 16px 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.texto-vacio {
+  margin: 16px;
+  color: #94a3b8;
+  text-align: center;
+}

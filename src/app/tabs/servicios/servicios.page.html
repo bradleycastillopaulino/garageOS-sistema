@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Servicios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido-servicios">
+  <div *ngIf="!servicios.length" class="texto-vacio">
+    Todavía no hay servicios registrados.
+  </div>
+
+  <ion-list *ngIf="servicios.length" lines="full" class="lista-servicios">
+    <ion-item *ngFor="let servicio of servicios">
+      <ion-label>
+        <h3>{{ servicio.vehiculo ? (servicio.vehiculo.marca + ' ' + servicio.vehiculo.modelo + ' ' + servicio.vehiculo.anio) : 'Vehículo no encontrado' }}</h3>
+        <p>{{ servicio.problema }}</p>
+        <p>{{ servicio.fecha }} · ${{ servicio.costo }}</p>
+      </ion-label>
+      <ion-badge slot="end" [color]="servicio.estado === 'Completado' ? 'success' : servicio.estado === 'En proceso' ? 'warning' : 'medium'">
+        {{ servicio.estado }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="irCrearServicio()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

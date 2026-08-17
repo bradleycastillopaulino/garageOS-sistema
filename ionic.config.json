@@ -1,0 +1,7 @@
+{
+  "name": "garage-os-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

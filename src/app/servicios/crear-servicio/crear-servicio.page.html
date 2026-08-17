@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/servicios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contenido-form">
+  <div *ngIf="!vehiculos.length" class="texto-vacio">
+    Primero debes registrar un auto para poder crear un servicio.
+  </div>
+
+  <ion-list *ngIf="vehiculos.length" class="lista-form" lines="full">
+    <ion-item>
+      <ion-select label="Auto" labelPlacement="stacked" placeholder="Selecciona un vehículo" [(ngModel)]="vehiculoId">
+        <ion-select-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+          {{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.anio }} · {{ vehiculo.matricula }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Descripción del problema" labelPlacement="stacked" placeholder="Cambio de aceite" [(ngModel)]="problema"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Fecha" labelPlacement="stacked" type="date" [(ngModel)]="fecha"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Costo" labelPlacement="stacked" type="number" placeholder="0.00" [(ngModel)]="costo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Estado" labelPlacement="stacked" [(ngModel)]="estado">
+        <ion-select-option *ngFor="let opcion of estados" [value]="opcion">{{ opcion }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea label="Piezas utilizadas" labelPlacement="stacked" placeholder="Filtro de aceite, aceite 5W30" [(ngModel)]="piezas" autoGrow="true"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea label="Notas" labelPlacement="stacked" placeholder="Notas adicionales" [(ngModel)]="notas" autoGrow="true"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button *ngIf="vehiculos.length" expand="block" class="boton-guardar" [disabled]="!formularioValido()" (click)="guardarServicio()">
+    Guardar servicio
+  </ion-button>
+</ion-content>
