@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Auto sin foto">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2329"/><stop offset="1" stop-color="#14171b"/></linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#g)"/>
+  <path d="M0 300h640" stroke="#2b3038" stroke-width="2" stroke-dasharray="14 12"/>
+  <g fill="none" stroke="#ff6a1a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 270h-26a14 14 0 0 1-14-14v-34a28 28 0 0 1 20-27l36-12 40-48a40 40 0 0 1 31-15h140a40 40 0 0 1 31 15l40 48 45 12a28 28 0 0 1 20 27v34a14 14 0 0 1-14 14h-26"/>
+    <path d="M200 270h240"/>
+    <path d="M186 162h92v-34h-52zm124 0h108l-40-34h-68z"/>
+    <circle cx="160" cy="274" r="36"/><circle cx="480" cy="274" r="36"/>
+  </g>
+  <g fill="#ff6a1a"><circle cx="160" cy="274" r="9"/><circle cx="480" cy="274" r="9"/></g>
+</svg>
