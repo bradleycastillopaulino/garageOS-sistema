@@ -8,6 +8,12 @@
 
 - [Avances del proyecto (PDF)](docs/Avances-GarageOS.pdf) — https://github.com/bradleycastillopaulino/garageOS-sistema/blob/main/docs/Avances-GarageOS.pdf
 
+## Panel de administrador (clientes)
+
+En `/admin` puedes ver, buscar, agregar, editar, eliminar y exportar (CSV) los datos de tus clientes, con sus vehículos, servicios, citas y saldos.
+
+La contraseña se toma de la variable de entorno `GARAGEOS_ADMIN_PASSWORD`. Si no existe, el backend genera una en el primer arranque y la guarda en `backend/admin_password.txt` (no se sube a GitHub). La contraseña protege las rutas `/api/admin/*`; el resto de la aplicación no pide inicio de sesión.
+
 ## Arrancar
 ```powershell
 # Backend

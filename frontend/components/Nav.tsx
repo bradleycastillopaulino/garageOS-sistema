@@ -10,6 +10,7 @@ const LINKS: { href: string; texto: string; icon: IconName }[] = [
   { href: '/servicios', texto: 'Servicios', icon: 'wrench' },
   { href: '/inventario', texto: 'Inventario', icon: 'box' },
   { href: '/citas', texto: 'Citas', icon: 'calendar' },
+  { href: '/admin', texto: 'Admin', icon: 'lock' },
 ];
 
 export default function Nav() {

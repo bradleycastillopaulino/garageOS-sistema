@@ -44,6 +44,12 @@ export interface Cita {
   notas: string;
 }
 
+export class ApiError extends Error {
+  constructor(message: string, public status: number) {
+    super(message);
+  }
+}
+
 async function http<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`/api${path}`, {
     ...init,
@@ -53,7 +59,10 @@ async function http<T>(path: string, init?: RequestInit): Promise<T> {
   if (!res.ok) {
     let detalle = '';
     try { detalle = (await res.json()).detail; } catch { /* sin cuerpo */ }
-    throw new Error(typeof detalle === 'string' && detalle ? detalle : `Error ${res.status} en ${path}`);
+    // Los errores de validación llegan como lista de { msg }
+    const lista = detalle as unknown;
+    if (Array.isArray(lista)) detalle = String(lista[0]?.msg ?? '').replace('Value error, ', '');
+    throw new ApiError(typeof detalle === 'string' && detalle ? detalle : `Error ${res.status} en ${path}`, res.status);
   }
   return (res.status === 204 ? undefined : await res.json()) as T;
 }
@@ -87,6 +96,43 @@ export const api = {
   estadoCita: (id: string, estado: EstadoCita) => http<Cita>(`/citas/${id}/estado`, { method: 'PATCH', body: body({ estado }) }),
   convertirCita: (id: string) => http<Servicio>(`/citas/${id}/convertir`, { method: 'POST' }),
   eliminarCita: (id: string) => http<void>(`/citas/${id}`, { method: 'DELETE' }),
+};
+
+// ---------- Administración (requiere sesión) ----------
+export interface Cliente {
+  id: string;
+  nombre: string;
+  telefono: string;
+  email: string;
+  direccion: string;
+  notas: string;
+}
+
+export interface ClienteResumen extends Cliente {
+  vehiculos: number;
+  servicios: number;
+  totalPagado: number;
+  totalPendiente: number;
+  ultimaVisita: string | null;
+}
+
+export interface ClienteDetalle {
+  cliente: ClienteResumen;
+  vehiculos: Vehiculo[];
+  servicios: Servicio[];
+  citas: Cita[];
+}
+
+const auth = (token: string) => ({ Authorization: `Bearer ${token}` });
+
+export const adminApi = {
+  login: (password: string) => http<{ token: string }>('/admin/login', { method: 'POST', body: body({ password }) }),
+  logout: (t: string) => http<void>('/admin/logout', { method: 'POST', headers: auth(t) }),
+  clientes: (t: string) => http<ClienteResumen[]>('/admin/clientes', { headers: auth(t) }),
+  cliente: (t: string, id: string) => http<ClienteDetalle>(`/admin/clientes/${id}`, { headers: auth(t) }),
+  crear: (t: string, d: Omit<Cliente, 'id'>) => http<Cliente>('/admin/clientes', { method: 'POST', headers: auth(t), body: body(d) }),
+  actualizar: (t: string, id: string, d: Omit<Cliente, 'id'>) => http<Cliente>(`/admin/clientes/${id}`, { method: 'PUT', headers: auth(t), body: body(d) }),
+  eliminar: (t: string, id: string) => http<void>(`/admin/clientes/${id}`, { method: 'DELETE', headers: auth(t) }),
 };
 
 // ---------- Utilidades ----------

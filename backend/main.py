@@ -10,6 +10,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+import admin
+
 DB_PATH = os.environ.get("GARAGEOS_DB", os.path.join(os.path.dirname(__file__), "garageos.db"))
 
 EstadoServicio = Literal["Pendiente", "En proceso", "Completado"]
@@ -77,6 +79,9 @@ def init_db() -> None:
             CREATE INDEX IF NOT EXISTS idx_citas_fecha ON citas(fecha, hora);
             """
         )
+        admin.preparar_tablas(db)
+        admin.migrar_propietarios(db, nuevo_id)
+    admin.obtener_password(DB_PATH)  # la genera en el primer arranque
 
 
 def nuevo_id() -> str:
@@ -135,6 +140,9 @@ def on_startup() -> None:
     init_db()
 
 
+app.include_router(admin.crear_router(get_db, nuevo_id, DB_PATH))
+
+
 @app.get("/api/health")
 def health():
     return {"status": "ok"}
@@ -178,6 +186,7 @@ def crear_vehiculo(datos: VehiculoIn):
             "VALUES (:id, :marca, :modelo, :anio, :matricula, :color, :propietario, :foto)",
             nuevo.model_dump(),
         )
+        admin.vincular_propietario(db, nuevo.id, nuevo.propietario, nuevo_id)
     return nuevo
 
 
@@ -239,6 +248,8 @@ def actualizar_vehiculo(vehiculo_id: str, datos: VehiculoIn):
             "color=:color, propietario=:propietario, foto=:foto WHERE id=:id",
             {**datos.model_dump(), "id": vehiculo_id},
         )
+        if cur.rowcount:
+            admin.vincular_propietario(db, vehiculo_id, datos.propietario, nuevo_id)
     if cur.rowcount == 0:
         raise HTTPException(404, "Vehículo no encontrado")
     return Vehiculo(id=vehiculo_id, **datos.model_dump())
